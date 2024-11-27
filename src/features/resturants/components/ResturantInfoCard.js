@@ -4,6 +4,8 @@ import { Card } from "react-native-paper";
 import styled from "styled-components";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star.js";
+import open from "../../../../assets/open.js";
+import { Spacer } from "./Spacer/spacer.js";
 
 const Title = styled.Text`
   font-family: ${(props) => props.theme.fonts.title};
@@ -18,9 +20,20 @@ const Address = styled.Text`
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
+const Section = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const SectionEnd = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
 const ResturantCardCover = styled(Card)`
-  padding: 1px;
-  backgroundcolor: ${(props) => props.theme.colors.bg.tertiary};
+  padding: 2px;
+  backgroundcolor: ${(props) => props.theme.colors.bg.quaternary};
   // backgroundcolor: "white;
 `;
 
@@ -31,7 +44,7 @@ const Rating = styled.View`
 `;
 
 const ResturantCard = styled(Card)`
-  // backgroundcolor: ${(props) => props.theme.colors.bg.tertiary};
+  // backgroundcolor: ${(props) => props.theme.colors.bg.quaternary};
   backgroundcolor: "white;
 `;
 
@@ -52,7 +65,6 @@ const ResturantInfoCard = ({ resturant = {} }) => {
 
   const ratingArray = Array.from(new Array(Math.floor(4)));
   console.log(ratingArray);
-
   return (
     <>
       <ResturantCard>
@@ -62,17 +74,34 @@ const ResturantInfoCard = ({ resturant = {} }) => {
           </ResturantCardCover>
           <Info>
             <Title>{name}</Title>
-            <Rating>
-              {ratingArray.map((id) => (
-                <SvgXml xml={star} width={20} height={20} key={id} />
-              ))}
-            </Rating>
-            <Address>{address}</Address>
+            <Section>
+              <Rating>
+                {ratingArray.map((id) => (
+                  <SvgXml xml={star} width={20} height={20} key={id} />
+                ))}
+              </Rating>
+              <SectionEnd>
+                {!isClosedTemporarily && (
+                  <Text
+                    varient="label"
+                    style={{
+                      color: "red",
+                      fontFamily: `${(prop) => prop.theme.fonts.body}`,
+                      paddingRight: 10,
+                    }}
+                  >
+                    IS CLOSED TEMPRARILY
+                  </Text>
+                )}
+                {isOPenNow && <SvgXml xml={open} width={20} height={20} />}
+              </SectionEnd>
+            </Section>
+             <Address>{address}</Address>
+            <Spacer position="left" size="large"></Spacer>
           </Info>
         </Card>
       </ResturantCard>
     </>
   );
 };
-
 export default ResturantInfoCard;

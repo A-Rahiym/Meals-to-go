@@ -12,14 +12,14 @@ const ScreenContainer = styled(View)`
 
 const ScreenSearchBar = styled(View)`
   padding: ${(props) => props.theme.space[4]};
-  background-color: ${(props) => props.theme.colors.bg.secondary};
+  background-color: ${(props) => props.theme.colors.bg.quaternary};
   margintop: StatusBar.currentHeight;
 `;
 
 const ResturantListContainer = styled(View)`
   flex: 1;
   padding: 5px;
-  background-color: ${(props) => props.theme.colors.bg.tertiary};
+  background-color: ${(props) => props.theme.colors.bg.quaternary};
 `;
 
 const ResturantScreen = () => {
