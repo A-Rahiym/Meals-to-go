@@ -11,10 +11,14 @@
     "lint": "eslint . --ext .js"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
+    "@expo-google-fonts/lato": "^0.2.3",
+    "@expo-google-fonts/oswald": "^0.2.3",
     "@expo/metro-config": "^0.19.4",
     "@expo/metro-runtime": "~4.0.0",
-    "expo": "^52.0.11",
+    "expo": "~52.0.11",
     "expo-status-bar": "~2.0.0",
+    "fonts": "^0.0.2",
     "metro": "^0.81.0",
     "metro-config": "^0.81.0",
     "metro-react-native-babel-preset": "^0.77.0",
@@ -25,7 +29,8 @@
     "react-native-paper": "^5.12.5",
     "react-native-web": "~0.19.13",
     "styled-components": "^5.3.11",
-    "uuid": "^11.0.3"
+    "uuid": "^11.0.3",
+    "react-native-svg": "15.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
