@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star.js";
 import open from "../../../../assets/open.js";
-import { Spacer } from "./Spacer/spacer.js";
+import { Spacer } from "./Spacer.js";
 
 const Title = styled.Text`
   font-family: ${(props) => props.theme.fonts.title};
@@ -39,7 +39,8 @@ const ResturantCardCover = styled(Card)`
 
 const Rating = styled.View`
   flex-direction: row;
-  padding-top: ${(prop) => prop.theme.space[2]};
+  // deconstruction is possible
+  padding-top: ${({theme}) => theme.space[2]};
   padding-bottom: ${(prop) => prop.theme.space[2]};
 `;
 
@@ -73,31 +74,38 @@ const ResturantInfoCard = ({ resturant = {} }) => {
             <Card.Cover key={name} source={photos[1]} />
           </ResturantCardCover>
           <Info>
+            <Spacer postion="bottom" size="small">
             <Title>{name}</Title>
+            </Spacer>
             <Section>
-              <Rating>
-                {ratingArray.map((id) => (
-                  <SvgXml xml={star} width={20} height={20} key={id} />
-                ))}
-              </Rating>
+              <Spacer position="left" size="medium">
+                <Rating>
+                  {ratingArray.map((id) => (
+                    <SvgXml xml={star} width={20} height={20} key={id} />
+                  ))}
+                </Rating>
+              </Spacer>
               <SectionEnd>
-                {!isClosedTemporarily && (
-                  <Text
-                    varient="label"
-                    style={{
-                      color: "red",
-                      fontFamily: `${(prop) => prop.theme.fonts.body}`,
-                      paddingRight: 10,
-                    }}
-                  >
-                    IS CLOSED TEMPRARILY
-                  </Text>
-                )}
-                {isOPenNow && <SvgXml xml={open} width={20} height={20} />}
+                <Spacer postion="top" size="large">
+                  {!isClosedTemporarily && (
+                    <Text
+                      varient="label"
+                      style={{
+                        color: "red",
+                        fontFamily: `${(prop) => prop.theme.fonts.body}`,
+                        paddingRight: 10,
+                      }}
+                    >
+                      IS CLOSED TEMPRARILY
+                    </Text>
+                  )}
+                </Spacer>
+                <Spacer postion="left" size="large">
+                  {isOPenNow && <SvgXml xml={open} width={20} height={20} />}
+                </Spacer>
               </SectionEnd>
             </Section>
-             <Address>{address}</Address>
-            <Spacer position="left" size="large"></Spacer>
+            <Address>{address}</Address>
           </Info>
         </Card>
       </ResturantCard>
